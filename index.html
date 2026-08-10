@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team - Recruitment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Our Company</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#openings">Open Positions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Join Our Amazing Team</h1>
+            <p>We're looking for talented professionals to grow with us</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Why Join Us?</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🚀 Innovation</h3>
+                    <p>Work on cutting-edge projects that make a real impact</p>
+                </div>
+                <div class="about-card">
+                    <h3>👥 Great Team</h3>
+                    <p>Collaborate with talented and passionate professionals</p>
+                </div>
+                <div class="about-card">
+                    <h3>📈 Growth</h3>
+                    <p>Continuous learning and career development opportunities</p>
+                </div>
+                <div class="about-card">
+                    <h3>💼 Benefits</h3>
+                    <p>Competitive salary, health insurance, and flexible work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions Section -->
+    <section id="openings" class="openings">
+        <div class="container">
+            <h2>Open Positions</h2>
+            <div class="jobs-grid">
+                <div class="job-card">
+                    <h3>Senior Developer</h3>
+                    <p class="job-type">Full-time</p>
+                    <p>Looking for experienced developer with 5+ years of experience in web development.</p>
+                    <p class="job-skills"><strong>Skills:</strong> React, Node.js, MongoDB</p>
+                </div>
+                <div class="job-card">
+                    <h3>Product Manager</h3>
+                    <p class="job-type">Full-time</p>
+                    <p>Help us shape the future of our products. Experience in B2B SaaS preferred.</p>
+                    <p class="job-skills"><strong>Skills:</strong> Product Strategy, Analytics, Leadership</p>
+                </div>
+                <div class="job-card">
+                    <h3>UX/UI Designer</h3>
+                    <p class="job-type">Full-time</p>
+                    <p>Create beautiful and intuitive user experiences for millions of users.</p>
+                    <p class="job-skills"><strong>Skills:</strong> Figma, Design Systems, User Research</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p class="contact-subtitle">Interested in joining our team? Send us your details!</p>
+            
+            <div class="form-wrapper">
+                <div data-fs-success class="success-message">
+                    <h3>✓ Thank you!</h3>
+                    <p>We've received your application. We'll be in touch soon!</p>
+                </div>
+                <div data-fs-error class="error-message"></div>
+
+                <form id="recruitment-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" data-fs-field required />
+                        <span data-fs-error="name" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" data-fs-field required />
+                        <span data-fs-error="email" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" data-fs-field required />
+                        <span data-fs-error="phone" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Position Applied For *</label>
+                        <select id="position" name="position" data-fs-field required>
+                            <option value="">Select a position</option>
+                            <option value="senior-developer">Senior Developer</option>
+                            <option value="product-manager">Product Manager</option>
+                            <option value="ux-ui-designer">UX/UI Designer</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span data-fs-error="position" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Years of Experience *</label>
+                        <input type="number" id="experience" name="experience" min="0" data-fs-field required />
+                        <span data-fs-error="experience" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us about yourself *</label>
+                        <textarea id="message" name="message" data-fs-field rows="5" required></textarea>
+                        <span data-fs-error="message" class="field-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resume">LinkedIn Profile / Portfolio URL</label>
+                        <input type="url" id="resume" name="resume" data-fs-field placeholder="https://" />
+                        <span data-fs-error="resume" class="field-error"></span>
+                    </div>
+
+                    <button type="submit" data-fs-submit-btn class="btn-submit">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Our Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Formspree AJAX Script -->
+    <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#recruitment-form', formId: 'maewedra' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
