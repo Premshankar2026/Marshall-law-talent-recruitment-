@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liftlife Team Portal</title>
+<style>
+  :root{
+    --navy:#0F3D66;
+    --blue:#1E5FA8;
+    --blue-light:#EAF2FB;
+    --amber:#F5A623;
+    --amber-light:#FEF3E0;
+    --white:#FFFFFF;
+    --bg:#F4F7FA;
+    --text:#1A2B3C;
+    --text-muted:#5B6B7C;
+    --border:#E1E9F1;
+    --radius:12px;
+    --shadow:0 8px 24px rgba(15,61,102,0.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  h1,h2,h3{line-height:1.3; color:var(--navy);}
+  a{text-decoration:none; color:inherit;}
+  .container{max-width:1040px; margin:0 auto; padding:0 20px;}
+
+  /* Top bar */
+  .topbar{
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    position:sticky; top:0; z-index:20;
+  }
+  .topbar .container{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px; gap:16px; flex-wrap:wrap;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-weight:700; font-size:1.05rem; color:var(--navy);
+  }
+  .brand-mark{
+    width:32px; height:32px; border-radius:8px;
+    background:linear-gradient(135deg, var(--blue), var(--navy));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; font-weight:800;
+  }
+  .portal-badge{
+    background:var(--blue-light); color:var(--blue);
+    font-size:.72rem; font-weight:700; letter-spacing:.03em;
+    padding:3px 10px; border-radius:999px; text-transform:uppercase;
+  }
+  .back-link{font-size:.85rem; font-weight:600; color:var(--blue);}
+  .back-link:hover{color:var(--navy);}
+
+  main{padding:32px 0 64px;}
+
+  section{margin-bottom:36px;}
+  .section-title{
+    display:flex; align-items:center; gap:10px;
+    font-size:1.1rem; margin-bottom:16px;
+  }
+  .section-title .num{
+    width:26px; height:26px; border-radius:7px;
+    background:var(--blue-light); color:var(--blue);
+    font-size:.8rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  /* Welcome banner */
+  .banner{
+    background:linear-gradient(120deg, var(--navy), var(--blue));
+    border-radius:var(--radius);
+    padding:32px 28px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .banner::before{
+    content:"";
+    position:absolute;
+    width:220px; height:220px;
+    border-radius:50%;
+    background:rgba(245,166,35,0.15);
+    top:-90px; right:-60px;
+  }
+  .banner p.eyebrow{
+    font-size:.78rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:10px; position:relative;
+  }
+  .banner blockquote{
+    font-size:clamp(1.15rem, 2.4vw, 1.5rem);
+    font-weight:600;
+    max-width:620px;
+    margin-bottom:12px;
+    position:relative;
+  }
+  .banner cite{
+    display:block; font-style:normal;
+    font-size:.85rem; color:#CFE0F2; position:relative;
+  }
+
+  /* Snapshot stat row */
+  .snapshot{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:20px;
+  }
+  .stat-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .stat-card .label{
+    font-size:.78rem; color:var(--text-muted); font-weight:600;
+    margin-bottom:6px;
+  }
+  .stat-card .value{
+    font-size:1.5rem; font-weight:700; color:var(--navy);
+  }
+  .stat-card .sub{font-size:.78rem; color:var(--text-muted); margin-top:2px;}
+
+  /* Rules & Guidelines */
+  .rules-callout{
+    background:var(--amber-light);
+    border:1px solid #F5D9A0;
+    border-left:4px solid var(--amber);
+    border-radius:10px;
+    padding:16px 18px;
+    margin-bottom:16px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .rules-callout .icon{font-size:1.2rem; flex-shrink:0;}
+  .rules-callout strong{display:block; color:#7A4E00; margin-bottom:2px; font-size:.95rem;}
+  .rules-callout span{color:#8A5C00; font-size:.88rem;}
+
+  .rules-list{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .rules-list li{
+    list-style:none;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:14px 18px;
+    border-bottom:1px solid var(--border);
+    font-size:.92rem;
+  }
+  .rules-list li:last-child{border-bottom:none;}
+  .rules-list .bullet{
+    width:22px; height:22px; border-radius:50%;
+    background:var(--blue-light); color:var(--blue);
+    font-size:.75rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:2px;
+  }
+  .rules-list p{color:var(--text-muted); margin:0;}
+  .rules-list p strong{color:var(--text);}
+
+  /* Training Materials */
+  .training-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  .training-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .training-card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+    border-color:var(--blue);
+  }
+  .training-icon{
+    width:44px; height:44px; border-radius:10px;
+    background:var(--blue-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.25rem;
+  }
+  .training-card h3{font-size:1rem;}
+  .training-card p{color:var(--text-muted); font-size:.85rem; flex-grow:1;}
+  .training-btn{
+    background:var(--blue);
+    color:#fff;
+    font-weight:600;
+    font-size:.85rem;
+    text-align:center;
+    padding:10px 14px;
+    border-radius:8px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    transition:background .15s ease;
+  }
+  .training-btn:hover{background:var(--navy);}
+  .training-btn .ext{font-size:.75rem; opacity:.8;}
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--border);
+    padding:22px 0;
+    text-align:center;
+    color:var(--text-muted);
+    font-size:.8rem;
+  }
+
+  /* Focus & motion */
+  a:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+
+  /* Responsive */
+  @media (max-width: 780px){
+    .snapshot{grid-template-columns:1fr 1fr;}
+    .training-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width: 480px){
+    .snapshot{grid-template-columns:1fr;}
+    .banner{padding:24px 20px;}
+    .topbar .container{height:auto; padding:12px 16px; justify-content:center; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        Liftlife <span class="portal-badge">Team Portal</span>
+      </a>
+      <a href="index.html" class="back-link">← Back to Liftlife</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Welcome Banner -->
+    <section aria-labelledby="welcome-heading">
+      <div class="banner">
+        <p class="eyebrow">Welcome back, team</p>
+        <blockquote id="welcome-heading">"No one builds a team alone — and no one earns alone either. Progress you make together is progress you get paid for."</blockquote>
+        <cite>— Liftlife Team Culture</cite>
+      </div>
+
+      <div class="snapshot">
+        <div class="stat-card">
+          <div class="label">Active Teams</div>
+          <div class="value">12</div>
+          <div class="sub">across Bhagalpur</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">This Month's Focus</div>
+          <div class="value">Onboarding</div>
+          <div class="sub">new member training</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Commission Model</div>
+          <div class="value">Team-based</div>
+          <div class="sub">not fixed salary</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rules & Guidelines -->
+    <section aria-labelledby="rules-heading">
+      <h2 class="section-title" id="rules-heading"><span class="num" aria-hidden="true">1</span> Rules & Guidelines</h2>
+
+      <div class="rules-callout">
+        <span class="icon" aria-hidden="true">⚠️</span>
+        <div>
+          <strong>Commission is based on team progress, not a fixed salary.</strong>
+          <span>Your earnings grow as your team hits its targets together — there is no fixed monthly pay.</span>
+        </div>
+      </div>
+
+      <ul class="rules-list">
+        <li>
+          <span class="bullet" aria-hidden="true">1</span>
+          <p><strong>Attend weekly team calls.</strong> These are where targets and updates are shared — attendance is expected.</p>
+        </li>
+        <li>
+          <span class="bullet" aria-hidden="true">2</span>
+          <p><strong>Log daily activity before 8 PM.</strong> Update the tracker every working day so your progress is counted correctly.</p>
+        </li>
+        <li>
+          <span class="bullet" aria-hidden="true">3</span>
+          <p><strong>Respect your team members.</strong> No side-dealing with leads or customers outside official Liftlife channels.</p>
+        </li>
+        <li>
+          <span class="bullet" aria-hidden="true">4</span>
+          <p><strong>Escalate issues within 24 hours.</strong> Flag any customer or store issue to your team lead the same day it happens.</p>
+        </li>
+        <li>
+          <span class="bullet" aria-hidden="true">5</span>
+          <p><strong>Complete training in your first week.</strong> New members should finish all onboarding materials before taking on tasks.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Training Materials -->
+    <section aria-labelledby="training-heading">
+      <h2 class="section-title" id="training-heading"><span class="num" aria-hidden="true">2</span> Training Materials</h2>
+
+      <div class="training-grid">
+        <div class="training-card">
+          <div class="training-icon" aria-hidden="true">📘</div>
+          <h3>Guide PDFs</h3>
+          <p>Step-by-step guides covering onboarding, store operations, and sales basics.</p>
+          <a href="https://drive.google.com/drive/folders/GUIDE_PDFS_FOLDER_ID" target="_blank" rel="noopener" class="training-btn">
+            Open in Drive <span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="training-card">
+          <div class="training-icon" aria-hidden="true">🎧</div>
+          <h3>Audio Training</h3>
+          <p>Recorded training sessions and quick tips you can listen to on the go.</p>
+          <a href="https://drive.google.com/drive/folders/AUDIO_TRAINING_FOLDER_ID" target="_blank" rel="noopener" class="training-btn">
+            Open in Drive <span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="training-card">
+          <div class="training-icon" aria-hidden="true">🎬</div>
+          <h3>Video Instructions</h3>
+          <p>Full instructional videos and demos for new and existing team members.</p>
+          <a href="https://drive.google.com/drive/folders/VIDEO_INSTRUCTIONS_FOLDER_ID" target="_blank" rel="noopener" class="training-btn">
+            Open in Drive <span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Liftlife Team Portal — internal use only
+  </footer>
+
+</body>
+</html>

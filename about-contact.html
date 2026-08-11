@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About & Contact — Liftlife</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F3D66;
+    --blue:#1E5FA8;
+    --blue-light:#EAF2FB;
+    --amber:#F5A623;
+    --white:#FFFFFF;
+    --bg:#F7FAFC;
+    --text:#1A2B3C;
+    --text-muted:#5B6B7C;
+    --border:#E3ECF5;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(15,61,102,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  h1,h2,h3{font-family:'Poppins', sans-serif; color:var(--navy); line-height:1.3;}
+  a{text-decoration:none; color:inherit;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* Navbar */
+  .navbar{background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50;}
+  .navbar .container{display:flex; align-items:center; justify-content:space-between; height:70px;}
+  .logo{font-family:'Poppins', sans-serif; font-weight:800; font-size:1.2rem; color:var(--navy); display:flex; align-items:center; gap:8px;}
+  .logo-mark{width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg, var(--blue), var(--navy)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.85rem; font-weight:800;}
+  .back-link{font-size:.9rem; font-weight:600; color:var(--blue);}
+  .back-link:hover{color:var(--navy);}
+
+  /* Header */
+  .page-header{background:linear-gradient(180deg, var(--blue-light), var(--bg)); padding:56px 0 46px; text-align:center;}
+  .badge{display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1px solid #D9E6F5; color:var(--blue); font-weight:600; font-size:.8rem; padding:7px 14px; border-radius:999px; margin-bottom:16px;}
+  .badge::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--amber);}
+  .page-header h1{font-size:clamp(1.8rem, 3.6vw, 2.5rem); margin-bottom:12px;}
+  .page-header p{color:var(--text-muted); max-width:540px; margin:0 auto;}
+
+  section{padding:52px 0;}
+  .section-head{max-width:580px; margin:0 auto 32px; text-align:center;}
+  .section-head h2{font-size:1.5rem; margin-bottom:8px;}
+  .section-head p{color:var(--text-muted); font-size:.95rem;}
+
+  /* About */
+  .about-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:32px;
+    align-items:center;
+  }
+  .about-quote{
+    background:linear-gradient(120deg, var(--navy), var(--blue));
+    color:#fff;
+    border-radius:var(--radius);
+    padding:32px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-quote::before{
+    content:"";
+    position:absolute; width:180px; height:180px; border-radius:50%;
+    background:rgba(245,166,35,0.15); top:-70px; right:-50px;
+  }
+  .about-quote .mark{
+    font-family:'Poppins', sans-serif;
+    font-size:2.2rem;
+    color:var(--amber);
+    line-height:1;
+    margin-bottom:8px;
+    position:relative;
+  }
+  .about-quote p{
+    font-size:1.15rem;
+    font-weight:600;
+    position:relative;
+  }
+  .about-text h2{font-size:1.5rem; margin-bottom:14px;}
+  .about-text p{color:var(--text-muted); margin-bottom:14px;}
+  .about-text p:last-child{margin-bottom:0;}
+
+  /* Trust badges */
+  .trust-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .trust-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px 26px;
+    text-align:center;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .trust-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .trust-icon{
+    width:56px; height:56px; border-radius:14px;
+    background:var(--blue-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+    margin:0 auto 16px;
+  }
+  .trust-card h3{font-size:1.1rem; margin-bottom:8px;}
+  .trust-card p{color:var(--text-muted); font-size:.9rem;}
+
+  /* Contact + Map */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:0.95fr 1.05fr;
+    gap:28px;
+    align-items:start;
+  }
+  .contact-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    box-shadow:var(--shadow);
+  }
+  .contact-card h3{font-size:1.2rem; margin-bottom:20px;}
+  .contact-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .contact-row:last-child{border-bottom:none; padding-bottom:0;}
+  .contact-row:first-of-type{padding-top:0;}
+  .contact-icon{
+    width:38px; height:38px; border-radius:10px;
+    background:var(--blue-light); color:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.05rem; flex-shrink:0;
+  }
+  .contact-row .label{font-size:.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.03em; margin-bottom:3px;}
+  .contact-row .value{font-size:.95rem; color:var(--text); font-weight:500;}
+  .contact-row .note{font-size:.78rem; color:var(--text-muted); margin-top:2px;}
+
+  .map-wrap{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .map-placeholder{
+    border:2px dashed #C9DCF0;
+    background:var(--blue-light);
+    min-height:340px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:32px;
+    color:var(--text-muted);
+    margin:16px;
+    border-radius:10px;
+  }
+  .map-placeholder .icon{font-size:2rem; margin-bottom:10px;}
+  .map-placeholder strong{display:block; color:var(--navy); margin-bottom:6px; font-family:'Poppins', sans-serif;}
+  .map-placeholder code{
+    display:block; margin-top:14px; background:var(--white); border:1px solid #D9E6F5;
+    border-radius:6px; padding:10px 14px; font-size:.75rem; color:var(--blue); word-break:break-all;
+    text-align:left;
+  }
+  .map-caption{padding:14px 20px 20px; font-size:.85rem; color:var(--text-muted);}
+
+  /* Footer */
+  .footer{background:#0A2740; color:#B9CBDD; padding:36px 0 22px; text-align:center;}
+  .footer p.brand{color:#fff; font-family:'Poppins', sans-serif; font-weight:700; margin-bottom:4px;}
+  .footer p.tag{font-size:.85rem; color:#8CA3BB;}
+
+  /* Focus & motion */
+  a:focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:4px;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+
+  /* Responsive */
+  @media (max-width: 860px){
+    .about-wrap{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:1fr 1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+  }
+  @media (max-width: 560px){
+    .trust-grid{grid-template-columns:1fr;}
+    .contact-card{padding:24px 20px;}
+    .map-placeholder{min-height:260px; padding:22px; margin:12px;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">L</span>Liftlife</a>
+      <a href="index.html" class="back-link">← Back to Liftlife</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="container">
+      <span class="badge">About & Contact</span>
+      <h1>Built by local individuals, for local individuals</h1>
+      <p>Liftlife exists so that youth in and around Bhagalpur can earn honestly, grow together, and trust the people they work with.</p>
+    </div>
+  </header>
+
+  <!-- About the Company -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-quote">
+          <div class="mark" aria-hidden="true">"</div>
+          <p>Local individuals uplift goals, building trust and profitable teams.</p>
+        </div>
+        <div class="about-text">
+          <h2 id="about-heading">Who we are</h2>
+          <p>Liftlife is a local initiative, not an outside company or franchise. We bring together rural and urban youth from around Bhagalpur and give them a real, structured way to earn part-time — through our Store and our Education & Tutors network.</p>
+          <p>Every team is built on the same idea: when individuals help each other progress, everyone earns more. There are no hidden layers or outside investors — just local people building something together, one team at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges / Values -->
+  <section id="values" style="background:var(--blue-light);" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="values-heading">What we stand for</h2>
+        <p>The values that keep every Liftlife team fair and accountable.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="trust-icon" aria-hidden="true">🔍</div>
+          <h3>Transparency</h3>
+          <p>Every rule, commission structure, and update is shared openly with our teams — nothing hidden, nothing changed without notice.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon" aria-hidden="true">🤝</div>
+          <h3>Rural & Urban Support</h3>
+          <p>We work with youth from villages and the city alike, meeting people where they are and building teams across Bhagalpur.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon" aria-hidden="true">⚖️</div>
+          <h3>Fair Commission Rules</h3>
+          <p>Earnings are tied to real, measurable team progress and calculated the same way for every single member — no favoritism.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Info + Map -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="contact-heading">Get in touch</h2>
+        <p>Visit us, call us, or find us on the map below.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>Contact details</h3>
+
+          <div class="contact-row">
+            <span class="contact-icon" aria-hidden="true">📍</span>
+            <div>
+              <div class="label">Address</div>
+              <div class="value">At Ramchandrapur Navtoliya, Nathnagar, Bhagalpur, Bihar 812004</div>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-icon" aria-hidden="true">📞</span>
+            <div>
+              <div class="label">Phone</div>
+              <div class="value">+91 XXXXX XXXXX</div>
+              <div class="note">Add your team's contact number</div>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-icon" aria-hidden="true">✉️</span>
+            <div>
+              <div class="label">Email</div>
+              <div class="value">hello@liftlife.example.com</div>
+              <div class="note">Replace with your working email</div>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-icon" aria-hidden="true">🕒</span>
+            <div>
+              <div class="label">Hours</div>
+              <div class="value">Mon – Sat, 10:00 AM – 6:00 PM</div>
+              <div class="note">Update to match your actual hours</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <div class="map-placeholder">
+            <div class="icon" aria-hidden="true">🗺️</div>
+            <strong>Google Maps Embed Placeholder</strong>
+            <span>Replace this block with your Google My Business map embed for Ramchandrapur Navtoliya, Nathnagar, Bhagalpur.</span>
+            <code>&lt;iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_CODE" width="100%" height="320" style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;</code>
+          </div>
+          <p class="map-caption">Tip: In Google Maps, search your business, tap <strong>Share → Embed a map</strong>, and paste the generated code in place of this placeholder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="brand">Liftlife</p>
+      <p class="tag">Empowering Local Individuals</p>
+    </div>
+  </footer>
+
+</body>
+</html>
