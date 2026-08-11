@@ -1,164 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Our Team - Recruitment</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liftlife — Part-Time Work & Team Building in Bhagalpur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F3D66;
+    --blue:#1E5FA8;
+    --blue-light:#EAF2FB;
+    --amber:#F5A623;
+    --white:#FFFFFF;
+    --bg:#F7FAFC;
+    --text:#1A2B3C;
+    --text-muted:#5B6B7C;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(15,61,102,0.10);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+  }
+
+  h1, h2, h3{
+    font-family:'Poppins', sans-serif;
+    color:var(--navy);
+    line-height:1.25;
+  }
+
+  .container{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+
+  /* ---------- Navbar ---------- */
+  .navbar{
+    background:var(--white);
+    border-bottom:1px solid #E3ECF5;
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .navbar .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    font-family:'Poppins', sans-serif;
+    font-weight:800;
+    font-size:1.4rem;
+    color:var(--navy);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo-mark{
+    width:30px; height:30px;
+    border-radius:8px;
+    background:linear-gradient(135deg, var(--blue), var(--navy));
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:.9rem;
+    font-weight:800;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-weight:500;
+    font-size:.95rem;
+  }
+  .nav-links a{
+    color:var(--text);
+    transition:color .2s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--blue);}
+  .nav-cta{
+    background:var(--blue);
+    color:#fff !important;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.9rem;
+  }
+  .nav-cta:hover{background:var(--navy);}
+
+  /* Mobile menu (checkbox-driven, no JS) */
+  .nav-toggle-input{display:none;}
+  .nav-toggle-label{
+    display:none;
+    width:40px; height:40px;
+    border-radius:8px;
+    border:1px solid #D9E6F5;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after{
+    content:"";
+    display:block;
+    width:18px; height:2px;
+    background:var(--navy);
+    position:relative;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle-label span::before{position:absolute; top:-6px;}
+  .nav-toggle-label span::after{position:absolute; top:6px;}
+  .mobile-panel{display:none;}
+
+  /* Focus visibility for keyboard users */
+  a:focus-visible, button:focus-visible, .nav-toggle-label:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 85% 20%, rgba(30,95,168,0.10), transparent 45%),
+      linear-gradient(180deg, var(--blue-light) 0%, var(--bg) 100%);
+    padding:88px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .container{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:48px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--white);
+    border:1px solid #D9E6F5;
+    color:var(--blue);
+    font-weight:600;
+    font-size:.8rem;
+    padding:7px 14px;
+    border-radius:999px;
+    margin-bottom:20px;
+    letter-spacing:.02em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--amber);
+  }
+  .hero h1{
+    font-size:clamp(2rem, 4.2vw, 3rem);
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin-bottom:18px;
+  }
+  .hero h1 span{color:var(--blue);}
+  .hero p{
+    color:var(--text-muted);
+    font-size:1.08rem;
+    max-width:520px;
+    margin-bottom:30px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--blue);
+    color:#fff;
+    font-weight:600;
+    padding:15px 30px;
+    border-radius:10px;
+    display:inline-block;
+    box-shadow:var(--shadow);
+    transition:transform .18s ease, background .18s ease;
+    border:none;
+    cursor:pointer;
+    font-size:1rem;
+  }
+  .btn-primary:hover{background:var(--navy); transform:translateY(-2px);}
+  .btn-secondary{
+    background:var(--white);
+    color:var(--navy);
+    font-weight:600;
+    padding:15px 28px;
+    border-radius:10px;
+    border:1.5px solid #D9E6F5;
+    transition:border-color .18s ease;
+  }
+  .btn-secondary:hover{border-color:var(--blue);}
+
+  .hero-stats{
+    display:flex;
+    gap:28px;
+    margin-top:38px;
+  }
+  .hero-stats div{display:flex; flex-direction:column;}
+  .hero-stats strong{
+    font-family:'Poppins', sans-serif;
+    font-size:1.5rem;
+    color:var(--navy);
+  }
+  .hero-stats span{
+    font-size:.82rem;
+    color:var(--text-muted);
+  }
+
+  /* Signature: connection-network graphic */
+  .hero-visual{
+    position:relative;
+    height:360px;
+  }
+  .network{
+    position:absolute;
+    inset:0;
+  }
+  .node{
+    position:absolute;
+    border-radius:50%;
+    background:var(--white);
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    color:var(--blue);
+    border:2px solid var(--blue-light);
+  }
+  .node.n1{width:96px; height:96px; top:10px; left:20px; font-size:1.6rem; background:linear-gradient(135deg, var(--blue), var(--navy)); color:#fff; border:none;}
+  .node.n2{width:64px; height:64px; top:40px; right:20px; font-size:1.1rem;}
+  .node.n3{width:72px; height:72px; bottom:60px; left:0; font-size:1.1rem;}
+  .node.n4{width:56px; height:56px; bottom:20px; right:60px; font-size:1rem; background:var(--amber); color:#fff; border:none;}
+  .node.n5{width:48px; height:48px; top:170px; left:130px; font-size:.9rem;}
+  .network svg{position:absolute; inset:0; width:100%; height:100%;}
+
+  /* ---------- Notice ---------- */
+  .notice{
+    background:var(--navy);
+  }
+  .notice .container{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 24px;
+    flex-wrap:wrap;
+  }
+  .notice-tag{
+    background:var(--amber);
+    color:#3A2600;
+    font-weight:700;
+    font-size:.75rem;
+    padding:5px 12px;
+    border-radius:999px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    flex-shrink:0;
+  }
+  .notice p{
+    color:#EAF2FB;
+    font-size:.92rem;
+    font-weight:500;
+    margin:0;
+  }
+  .notice a{
+    color:var(--amber);
+    font-weight:600;
+    margin-left:6px;
+  }
+
+  /* ---------- Services ---------- */
+  .services{
+    padding:80px 0;
+  }
+  .section-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 48px;
+  }
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom:12px;
+  }
+  .section-head p{color:var(--text-muted);}
+
+  .service-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .service-card{
+    background:var(--white);
+    border:1px solid #E3ECF5;
+    border-radius:var(--radius);
+    padding:36px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover, .service-card:focus-visible{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+    border-color:var(--blue);
+  }
+  .service-icon{
+    width:52px; height:52px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.5rem;
+    background:var(--blue-light);
+  }
+  .service-card h3{font-size:1.3rem;}
+  .service-card p{color:var(--text-muted); font-size:.95rem; flex-grow:1;}
+  .service-link{
+    color:var(--blue);
+    font-weight:600;
+    font-size:.95rem;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .service-card:hover .service-link{color:var(--navy);}
+  .service-link .arrow{transition:transform .2s ease;}
+  .service-card:hover .arrow{transform:translateX(4px);}
+
+  /* ---------- Why / trust strip ---------- */
+  .why{
+    background:var(--blue-light);
+    padding:60px 0;
+  }
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+    text-align:center;
+  }
+  .why-item h3{font-size:1.05rem; margin-bottom:8px;}
+  .why-item p{color:var(--text-muted); font-size:.9rem;}
+  .why-icon{
+    width:48px; height:48px;
+    border-radius:50%;
+    background:var(--white);
+    box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px;
+    font-size:1.3rem;
+  }
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:linear-gradient(120deg, var(--navy), var(--blue));
+    padding:64px 0;
+    text-align:center;
+  }
+  .cta-banner h2{
+    color:#fff;
+    font-size:clamp(1.5rem, 3vw, 2rem);
+    margin-bottom:14px;
+  }
+  .cta-banner p{
+    color:#D9E6F5;
+    max-width:480px;
+    margin:0 auto 28px;
+  }
+  .cta-banner .btn-primary{
+    background:var(--amber);
+    color:#3A2600;
+  }
+  .cta-banner .btn-primary:hover{background:#e0951a;}
+
+  /* ---------- Footer ---------- */
+  .footer{
+    background:#0A2740;
+    color:#B9CBDD;
+    padding:44px 0 26px;
+  }
+  .footer .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .footer-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#fff;
+    font-family:'Poppins', sans-serif;
+    font-weight:700;
+  }
+  .footer p.tag{
+    font-size:.85rem;
+    color:#8CA3BB;
+  }
+  .footer-links{
+    display:flex;
+    gap:22px;
+    font-size:.88rem;
+  }
+  .footer-links a:hover{color:#fff;}
+  .footer-bottom{
+    border-top:1px solid #17395A;
+    margin-top:28px;
+    padding-top:20px;
+    text-align:center;
+    font-size:.8rem;
+    color:#7590A9;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .hero .container{grid-template-columns:1fr;}
+    .hero-visual{height:260px; order:-1;}
+    .service-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .nav-toggle-label{display:flex;}
+
+    .mobile-panel{
+      display:block;
+      max-height:0;
+      overflow:hidden;
+      background:var(--white);
+      border-bottom:1px solid #E3ECF5;
+      transition:max-height .25s ease;
+    }
+    .mobile-panel ul{
+      display:flex;
+      flex-direction:column;
+      padding:8px 24px 20px;
+    }
+    .mobile-panel a{
+      display:block;
+      padding:12px 0;
+      font-weight:500;
+      border-bottom:1px solid #EFF4FA;
+    }
+    .mobile-panel .nav-cta{
+      display:inline-block;
+      margin-top:12px;
+    }
+    .nav-toggle-input:checked ~ .mobile-panel{max-height:320px;}
+    .nav-toggle-input:checked ~ .navbar .nav-toggle-label span{background:transparent;}
+    .nav-toggle-input:checked ~ .navbar .nav-toggle-label span::before{transform:translateY(6px) rotate(45deg);}
+    .nav-toggle-input:checked ~ .navbar .nav-toggle-label span::after{transform:translateY(-6px) rotate(-45deg);}
+  }
+
+  @media (max-width: 520px){
+    .hero{padding:56px 0 44px;}
+    .hero-stats{gap:18px;}
+    .footer .container{flex-direction:column; text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">uplift youths</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#openings">Open Positions</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo"><span class="logo-mark" aria-hidden="true">L</span>Liftlife</a>
+      <ul class="nav-links">
+        <li><a href="#notice">Updates</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Liftlife</a></li>
+      </ul>
+      <a href="#join" class="nav-cta">Join Our Team</a>
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu"><span></span></label>
+    </div>
+  </nav>
+
+  <!-- Mobile menu panel -->
+  <div class="mobile-panel">
+    <ul>
+      <li><a href="#notice">Updates</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Liftlife</a></li>
+      <li><a href="#join" class="nav-cta">Join Our Team</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow">Now hiring across Bhagalpur</span>
+        <h1>Earn part-time.<br>Build your team.<br><span>Lift your future.</span></h1>
+        <p>Liftlife connects rural and urban youth in Bhagalpur with real part-time work and the chance to grow into team leaders — no experience required, just the will to start.</p>
+        <div class="hero-ctas">
+          <a href="#join" class="btn-primary">Join Our Team</a>
+          <a href="#services" class="btn-secondary">Explore Opportunities</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Join Our Amazing Team</h1>
-            <p>We're looking for talented professionals to grow with us</p>
+        <div class="hero-stats">
+          <div><strong>500+</strong><span>Youth onboarded</span></div>
+          <div><strong>12</strong><span>Active teams</span></div>
+          <div><strong>₹0</strong><span>Joining fee</span></div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Why Join Us?</h2>
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>🚀 Innovation</h3>
-                    <p>Work on cutting-edge projects that make a real impact</p>
-                </div>
-                <div class="about-card">
-                    <h3>👥 Great Team</h3>
-                    <p>Collaborate with talented and passionate professionals</p>
-                </div>
-                <div class="about-card">
-                    <h3>📈 Growth</h3>
-                    <p>Continuous learning and career development opportunities</p>
-                </div>
-                <div class="about-card">
-                    <h3>💼 Benefits</h3>
-                    <p>Competitive salary, health insurance, and flexible work</p>
-                </div>
-            </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="network">
+          <svg viewBox="0 0 300 260">
+            <line x1="65" y1="55" x2="235" y2="70" stroke="#C9DCF0" stroke-width="2"/>
+            <line x1="65" y1="55" x2="45" y2="180" stroke="#C9DCF0" stroke-width="2"/>
+            <line x1="65" y1="55" x2="150" y2="190" stroke="#C9DCF0" stroke-width="2"/>
+            <line x1="235" y1="70" x2="270" y2="205" stroke="#C9DCF0" stroke-width="2"/>
+            <line x1="45" y1="180" x2="150" y2="190" stroke="#C9DCF0" stroke-width="2"/>
+          </svg>
+          <div class="node n1">L</div>
+          <div class="node n2">₹</div>
+          <div class="node n3">👥</div>
+          <div class="node n4">✓</div>
+          <div class="node n5">📍</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Open Positions Section -->
-    <section id="openings" class="openings">
-        <div class="container">
-            <h2>Open Positions</h2>
-            <div class="jobs-grid">
-                <div class="job-card">
-                    <h3>Senior Developer</h3>
-                    <p class="job-type">Full-time</p>
-                    <p>Looking for experienced developer with 5+ years of experience in web development.</p>
-                    <p class="job-skills"><strong>Skills:</strong> React, Node.js, MongoDB</p>
-                </div>
-                <div class="job-card">
-                    <h3>Product Manager</h3>
-                    <p class="job-type">Full-time</p>
-                    <p>Help us shape the future of our products. Experience in B2B SaaS preferred.</p>
-                    <p class="job-skills"><strong>Skills:</strong> Product Strategy, Analytics, Leadership</p>
-                </div>
-                <div class="job-card">
-                    <h3>UX/UI Designer</h3>
-                    <p class="job-type">Full-time</p>
-                    <p>Create beautiful and intuitive user experiences for millions of users.</p>
-                    <p class="job-skills"><strong>Skills:</strong> Figma, Design Systems, User Research</p>
-                </div>
-            </div>
+  <!-- Notice / Updates -->
+  <section class="notice" id="notice">
+    <div class="container">
+      <span class="notice-tag">Latest Notice</span>
+      <p>New Store openings across Bhagalpur this month — walk-in interviews every Saturday.<a href="#services">See details →</a></p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Our Services</span>
+        <h2>Two ways to start earning today</h2>
+        <p>Pick the path that fits you — hands-on retail work or sharing what you know as a tutor.</p>
+      </div>
+      <div class="service-grid">
+        <a href="/store" class="service-card">
+          <div class="service-icon" aria-hidden="true">🛍️</div>
+          <h3>Store</h3>
+          <p>Join our local retail teams for flexible, part-time shifts. Great for youth who want steady hands-on work close to home.</p>
+          <span class="service-link">Visit Store <span class="arrow">→</span></span>
+        </a>
+        <a href="/education" class="service-card">
+          <div class="service-icon" aria-hidden="true">📚</div>
+          <h3>Education / Tutors</h3>
+          <p>Turn your knowledge into income. Teach students in your area on your own schedule and help build a stronger Bhagalpur.</p>
+          <span class="service-link">Become a Tutor <span class="arrow">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why Liftlife</span>
+        <h2>Built for Bhagalpur's youth</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">🤝</div>
+          <h3>Local & trusted</h3>
+          <p>Every opportunity is verified and rooted in your own community.</p>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p class="contact-subtitle">Interested in joining our team? Send us your details!</p>
-            
-            <div class="form-wrapper">
-                <div data-fs-success class="success-message">
-                    <h3>✓ Thank you!</h3>
-                    <p>We've received your application. We'll be in touch soon!</p>
-                </div>
-                <div data-fs-error class="error-message"></div>
-
-                <form id="recruitment-form">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" data-fs-field required />
-                        <span data-fs-error="name" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" data-fs-field required />
-                        <span data-fs-error="email" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" data-fs-field required />
-                        <span data-fs-error="phone" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="position">Position Applied For *</label>
-                        <select id="position" name="position" data-fs-field required>
-                            <option value="">Select a position</option>
-                            <option value="senior-developer">Senior Developer</option>
-                            <option value="product-manager">Product Manager</option>
-                            <option value="ux-ui-designer">UX/UI Designer</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <span data-fs-error="position" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="experience">Years of Experience *</label>
-                        <input type="number" id="experience" name="experience" min="0" data-fs-field required />
-                        <span data-fs-error="experience" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Tell us about yourself *</label>
-                        <textarea id="message" name="message" data-fs-field rows="5" required></textarea>
-                        <span data-fs-error="message" class="field-error"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="resume">LinkedIn Profile / Portfolio URL</label>
-                        <input type="url" id="resume" name="resume" data-fs-field placeholder="https://" />
-                        <span data-fs-error="resume" class="field-error"></span>
-                    </div>
-
-                    <button type="submit" data-fs-submit-btn class="btn-submit">Submit Application</button>
-                </form>
-            </div>
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">⏱️</div>
+          <h3>Flexible hours</h3>
+          <p>Work around school, college, or family — you set the pace.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Our Company. All rights reserved.</p>
+        <div class="why-item">
+          <div class="why-icon" aria-hidden="true">📈</div>
+          <h3>Room to grow</h3>
+          <p>Start earning, then step up to lead and build your own team.</p>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- Formspree AJAX Script -->
-    <script>
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { formElement: '#recruitment-form', formId: 'maewedra' });
-    </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="join">
+    <div class="container">
+      <h2>Ready to lift your future?</h2>
+      <p>Join hundreds of youth across Bhagalpur already earning and growing with Liftlife.</p>
+      <a href="/join" class="btn-primary">Join Our Team</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <div class="footer-brand"><span class="logo-mark" aria-hidden="true">L</span>Liftlife</div>
+        <p class="tag">Empowering Local Individuals</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#services">Store</a></li>
+        <li><a href="#services">Tutors</a></li>
+        <li><a href="#notice">Updates</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">Liftlife — Empowering Local Individuals</div>
+  </footer>
+
 </body>
 </html>

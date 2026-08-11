@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liftlife Education & Tutors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F3D66;
+    --blue:#1E5FA8;
+    --blue-light:#EAF2FB;
+    --amber:#F5A623;
+    --white:#FFFFFF;
+    --bg:#F7FAFC;
+    --text:#1A2B3C;
+    --text-muted:#5B6B7C;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(15,61,102,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Poppins', sans-serif;
+    color:var(--navy);
+    line-height:1.3;
+  }
+  a{text-decoration:none; color:inherit;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* Navbar */
+  .navbar{
+    background:var(--white);
+    border-bottom:1px solid #E3ECF5;
+    position:sticky; top:0; z-index:50;
+  }
+  .navbar .container{
+    display:flex; align-items:center; justify-content:space-between; height:70px;
+  }
+  .logo{
+    font-family:'Poppins', sans-serif; font-weight:800; font-size:1.2rem; color:var(--navy);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo-mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(135deg, var(--blue), var(--navy));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:.85rem; font-weight:800;
+  }
+  .back-link{font-size:.9rem; font-weight:600; color:var(--blue);}
+  .back-link:hover{color:var(--navy);}
+
+  /* Header */
+  .page-header{
+    background:linear-gradient(180deg, var(--blue-light), var(--bg));
+    padding:56px 0 46px;
+    text-align:center;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); border:1px solid #D9E6F5; color:var(--blue);
+    font-weight:600; font-size:.8rem; padding:7px 14px; border-radius:999px; margin-bottom:16px;
+  }
+  .badge::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--amber);}
+  .page-header h1{font-size:clamp(1.7rem, 3.4vw, 2.4rem); margin-bottom:12px;}
+  .page-header p{color:var(--text-muted); max-width:520px; margin:0 auto;}
+
+  section{padding:56px 0;}
+  .section-head{max-width:560px; margin:0 auto 32px; text-align:center;}
+  .section-head h2{font-size:1.5rem; margin-bottom:8px;}
+  .section-head p{color:var(--text-muted); font-size:.95rem;}
+
+  /* Book a Teacher */
+  .book-card{
+    background:var(--white);
+    border:1px solid #E3ECF5;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px;
+    max-width:700px;
+    margin:0 auto;
+  }
+  .form-placeholder{
+    border:2px dashed #C9DCF0;
+    border-radius:10px;
+    background:var(--blue-light);
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:32px;
+    color:var(--text-muted);
+  }
+  .form-placeholder .icon{font-size:2rem; margin-bottom:10px;}
+  .form-placeholder strong{color:var(--navy); display:block; margin-bottom:6px; font-family:'Poppins', sans-serif;}
+  .form-placeholder code{
+    display:block; margin-top:14px; background:var(--white); border:1px solid #D9E6F5;
+    border-radius:6px; padding:10px 14px; font-size:.78rem; color:var(--blue); word-break:break-all;
+  }
+  .lang-tags{display:flex; gap:10px; justify-content:center; margin-top:16px;}
+  .lang-tags span{
+    background:var(--white); border:1px solid #D9E6F5; color:var(--navy);
+    font-size:.8rem; font-weight:600; padding:5px 12px; border-radius:999px;
+  }
+
+  /* Teacher Profiles */
+  .teacher-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .teacher-card{
+    background:var(--white);
+    border:1px solid #E3ECF5;
+    border-radius:var(--radius);
+    padding:28px 24px;
+    text-align:center;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .teacher-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .teacher-photo{
+    width:92px; height:92px;
+    border-radius:50%;
+    margin:0 auto 16px;
+    object-fit:cover;
+    border:3px solid var(--blue-light);
+  }
+  .teacher-card h3{font-size:1.1rem; margin-bottom:4px;}
+  .teacher-subjects{
+    color:var(--blue); font-weight:600; font-size:.85rem; margin-bottom:10px;
+  }
+  .teacher-specialty{
+    color:var(--text-muted); font-size:.88rem;
+  }
+
+  /* Student Resources */
+  .resource-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .resource-btn{
+    background:var(--white);
+    border:1px solid #E3ECF5;
+    border-radius:var(--radius);
+    padding:28px 20px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .resource-btn:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--blue);}
+  .resource-icon{
+    width:52px; height:52px; border-radius:12px;
+    background:var(--blue-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+  }
+  .resource-btn strong{font-family:'Poppins', sans-serif; color:var(--navy); font-size:1rem;}
+  .resource-btn span{color:var(--text-muted); font-size:.82rem;}
+
+  /* Video Classes */
+  .video-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .video-card{
+    background:var(--white);
+    border:1px solid #E3ECF5;
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .video-frame-wrap{
+    position:relative;
+    width:100%;
+    padding-top:56.25%; /* 16:9 */
+    background:#0A2740;
+  }
+  .video-frame-wrap iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0;
+  }
+  .video-placeholder-overlay{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px;
+    background:linear-gradient(160deg, var(--navy), var(--blue));
+    color:#EAF2FB;
+    font-size:.85rem;
+    font-weight:600;
+  }
+  .video-placeholder-overlay .icon{
+    width:44px; height:44px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+  }
+  .video-card .video-meta{padding:16px 18px;}
+  .video-card h3{font-size:1rem; margin-bottom:4px;}
+  .video-card p{color:var(--text-muted); font-size:.85rem;}
+
+  /* Footer */
+  .footer{
+    background:#0A2740;
+    color:#B9CBDD;
+    padding:36px 0 22px;
+    text-align:center;
+    margin-top:20px;
+  }
+  .footer p.brand{color:#fff; font-family:'Poppins', sans-serif; font-weight:700; margin-bottom:4px;}
+  .footer p.tag{font-size:.85rem; color:#8CA3BB;}
+
+  /* Responsive */
+  @media (max-width: 860px){
+    .teacher-grid{grid-template-columns:1fr 1fr;}
+    .resource-grid{grid-template-columns:1fr;}
+    .video-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width: 560px){
+    .teacher-grid{grid-template-columns:1fr;}
+    .book-card{padding:22px;}
+    .form-placeholder{min-height:320px; padding:20px;}
+  }
+
+  a:focus-visible, .resource-btn:focus-visible, .teacher-card:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">L</span>Liftlife Education</a>
+      <a href="index.html" class="back-link">← Back to Liftlife</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="container">
+      <span class="badge">Trusted local tutors</span>
+      <h1>Liftlife Education & Tutors</h1>
+      <p>Home tuitions, test prep, and video classes for students across Bhagalpur — taught by verified local tutors, in English or Hindi.</p>
+    </div>
+  </header>
+
+  <!-- Book a Teacher -->
+  <section id="book">
+    <div class="container">
+      <div class="section-head">
+        <h2>Book a Teacher</h2>
+        <p>Fill out the short form below and we'll match your child with a nearby tutor.</p>
+      </div>
+      <div class="book-card">
+        <div class="form-placeholder">
+          <div class="icon" aria-hidden="true">📋</div>
+          <strong>Google Form Embed Placeholder</strong>
+          <span>Replace this block with your Google Form's embed &lt;iframe&gt; to let parents book a home tutor directly.</span>
+          <code>&lt;iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="100%" height="600" frameborder="0"&gt;Loading…&lt;/iframe&gt;</code>
+        </div>
+        <div class="lang-tags">
+          <span>🇬🇧 English</span>
+          <span>🇮🇳 Hindi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teacher Profiles -->
+  <section id="teachers" style="background:var(--blue-light);">
+    <div class="container">
+      <div class="section-head">
+        <h2>Meet Our Tutors</h2>
+        <p>A few of the local teachers already tutoring students across Bhagalpur.</p>
+      </div>
+      <div class="teacher-grid">
+
+        <div class="teacher-card">
+          <img class="teacher-photo" src="https://placehold.co/100x100/EAF2FB/1E5FA8?text=Photo" alt="Placeholder photo of tutor Anjali Kumari">
+          <h3>Anjali Kumari</h3>
+          <p class="teacher-subjects">English, Social Science</p>
+          <p class="teacher-specialty">Specialty: Spoken English for Class 6–10</p>
+        </div>
+
+        <div class="teacher-card">
+          <img class="teacher-photo" src="https://placehold.co/100x100/EAF2FB/1E5FA8?text=Photo" alt="Placeholder photo of tutor Rohit Sharma">
+          <h3>Rohit Sharma</h3>
+          <p class="teacher-subjects">Mathematics, Science</p>
+          <p class="teacher-specialty">Specialty: Board exam preparation (Class 9–12)</p>
+        </div>
+
+        <div class="teacher-card">
+          <img class="teacher-photo" src="https://placehold.co/100x100/EAF2FB/1E5FA8?text=Photo" alt="Placeholder photo of tutor Priya Singh">
+          <h3>Priya Singh</h3>
+          <p class="teacher-subjects">Hindi, Sanskrit</p>
+          <p class="teacher-specialty">Specialty: Foundational reading & writing, Class 1–5</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Resources -->
+  <section id="resources">
+    <div class="container">
+      <div class="section-head">
+        <h2>Student Resources</h2>
+        <p>Everything a student needs, in one place.</p>
+      </div>
+      <div class="resource-grid">
+        <a href="#" class="resource-btn">
+          <span class="resource-icon" aria-hidden="true">📝</span>
+          <strong>Online Test Series</strong>
+          <span>Practice tests with instant scoring</span>
+        </a>
+        <a href="#" class="resource-btn">
+          <span class="resource-icon" aria-hidden="true">📥</span>
+          <strong>Download Worksheets / Homework</strong>
+          <span>Printable PDFs by subject and class</span>
+        </a>
+        <a href="#" class="resource-btn">
+          <span class="resource-icon" aria-hidden="true">📊</span>
+          <strong>View Report Cards</strong>
+          <span>Track progress after every test</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Classes -->
+  <section id="videos" style="background:var(--blue-light);">
+    <div class="container">
+      <div class="section-head">
+        <h2>Video Classes</h2>
+        <p>Free sample lessons from our tutors.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-frame-wrap video-placeholder">
+            <!-- Replace src="" with your YouTube embed URL, e.g. https://www.youtube.com/embed/VIDEO_ID -->
+            <iframe src="" title="Class 10 Maths — Algebra Basics" allowfullscreen loading="lazy"></iframe>
+            <div class="video-placeholder-overlay" aria-hidden="true">
+              <span class="icon">▶</span>
+              <span>YouTube embed placeholder</span>
+            </div>
+          </div>
+          <div class="video-meta">
+            <h3>Class 10 Maths — Algebra Basics</h3>
+            <p>A quick introduction to solving linear equations.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-frame-wrap video-placeholder">
+            <iframe src="" title="Spoken English — Everyday Conversations" allowfullscreen loading="lazy"></iframe>
+            <div class="video-placeholder-overlay" aria-hidden="true">
+              <span class="icon">▶</span>
+              <span>YouTube embed placeholder</span>
+            </div>
+          </div>
+          <div class="video-meta">
+            <h3>Spoken English — Everyday Conversations</h3>
+            <p>Simple phrases to build everyday speaking confidence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="brand">Liftlife Education & Tutors</p>
+      <p class="tag">Empowering Local Individuals</p>
+    </div>
+  </footer>
+
+</body>
+</html>
